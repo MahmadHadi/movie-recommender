@@ -1,7 +1,8 @@
 import streamlit as st
 import pickle
 import requests
-
+import os
+from dotenv import load_dotenv
 
 # Load data
 movies = pickle.load(open("movies.pkl", "rb"))
@@ -9,10 +10,9 @@ similarity = pickle.load(open("similarity.pkl", "rb"))
 
 movie_list = movies["title"].values
 
-
 # TMDB API
-API_KEY = "25f71cf582524bc946934ca889919766"
-
+load_dotenv()
+API_KEY = os.getenv("TMDB_API_KEY")
 session = requests.Session()
 
 
